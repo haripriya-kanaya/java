@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
+<head>
+    <title>Staff Dashboard</title>
+    <!-- CSS styles here -->
+    <style>
+        .header {
+            text-align: center;
+        }
+
+        .container {
+            text-align: right;
+            overflow: hidden;
+        }
+
+        .staff-details {
+            float: left;
+            margin-right: 20px;
+            text-align: center;
+            margin-top: -30px;
+        }
+
+        .button {
+            display: inline-block;
+            padding: 10px 20px;
+            background-color: #4CAF50;
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+            margin-left: 10px;
+        }
+
+        .button-container {
+            margin-top: 30px;
+        }
+
+        body {
+            background-image: url("https://img.freepik.com/free-vector/blue-curve-frame-template_53876-114605.jpg");
+            background-position: center center;
+            background-size: cover;
+            height: 100vh;
+            width: 100%;
+            background-repeat: no-repeat;
+        }
+
+        .staff-details-container {
+            margin-top: 30px;
+        }
+    </style>
+</head>
+<body>
+    <h1 class="header">Staff Dashboard</h1>
+    <div class="container">
+        <div class="staff-details">
+           <!-- HTML markup and styles here -->
+
+ <h1>Thanks for Logging In!</h1>
+    
+    <h2>Welcome ${sessionScope.loggedInUsername}</h2>
+    <p>Staff ID: ${sessionScope.loggedInStaffId}</p>
+    <!-- Add more staff details as needed -->
+    
+<!-- Remaining HTML markup and styles -->
+
+        </div>
+        <div class="button-container">
+            <a href="Slot.jsp" class="button">Booking Slot</a>
+            <a href="LogoutServlet" class="button">Logout</a>
+        </div>
+    </div>
+    <div class="staff-details-container" id="staffDetailsContainer">
+        <p>No User</p>
+    </div>
+</body>
+</html>

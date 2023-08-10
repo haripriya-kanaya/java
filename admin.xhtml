@@ -1,0 +1,35 @@
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
+<h:head>
+    <title>Add Admin</title>
+</h:head>
+<h:body>
+    <h1>Add Admin</h1>
+
+    <h:form>
+        <h:panelGrid columns="2">
+            <h:outputLabel for="vehiclenumber" value="Vehicle Number:" />
+            <h:inputText id="vehiclenumber" value="#{Admin.vehiclenumber}" required="true"
+                         pattern="[A-Z]{2}\d{4}" title="Please enter two capital letters followed by four numbers" />
+
+            <h:outputLabel for="intime" value="In Time:" />
+            <h:inputText id="intime" value="#{Admin.intime}" required="true" />
+
+            <h:outputLabel for="category" value="Category:" />
+            <h:selectOneMenu id="category" value="#{Admin.category}" required="true">
+                <f:selectItem itemValue="" itemLabel="Select category" />
+                <f:selectItem itemValue="twowheeler" itemLabel="Two Wheeler" />
+                <f:selectItem itemValue="fourwheeler" itemLabel="Four Wheeler" />
+            </h:selectOneMenu>
+        </h:panelGrid>
+
+        <h:commandButton value="Submit" action="#{Admindao.addUser(Admin)}" />
+    </h:form>
+</h:body>
+</html>

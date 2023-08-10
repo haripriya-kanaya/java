@@ -1,0 +1,286 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:a="http://xmlns.jcp.org/jsf/passthrough"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:f="http://java.sun.com/jsf/core">
+<h:head>
+  <style>
+    .login-box {
+        width: 400px;
+        margin: 0 auto;
+        padding: 20px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        background-color: #fff;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        font-size: 15px; /* Increased the font size */
+    }
+
+    .login-box .card-header {
+        text-align: center;
+    }
+
+    .login-box .form-group {
+        margin-bottom: 20px;
+    }
+
+    .login-box .form-group .input-group-prepend .input-group-text {
+        background-color: #f8f8f8;
+    }
+
+    .login-box .form-group input {
+        height: 40px;
+    }
+
+    .login-box .form-group input[type="text"],
+    .login-box .form-group input[type="password"] {
+        height: 40px;
+        width: 100%;
+    }
+
+    .login-box .form-group input#username {
+        width: 100% !important;
+    }
+
+    .login-box .form-group input#password {
+        width: 100% !important;
+    }
+
+    .login-box .form-check-label {
+        font-weight: normal;
+    }
+
+    .login-box .links {
+        text-align: center;
+        margin-top: 10px;
+    }
+
+    .navbar-light .navbar-nav .nav-link.active {
+        color: white;
+    }
+
+    body {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+    }
+
+    .login-box {
+        width: 400px;
+        padding: 20px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        background-color: #fff;
+    }
+
+    .nav-item {
+        font-weight: bold;
+        font-size: large;
+    }
+
+    .nav {
+        background-color: black;
+    }
+
+    .error-message {
+        color: red;
+    }
+
+    .error-message {
+        display: block;
+        color: red;
+        font-size: 12px;
+        margin-top: 5px;
+    }
+
+    .login-box {
+        font-size: 20px;
+    }
+
+    .login-box .form-control,
+    .login-box .btn {
+        font-size: 15px;
+    }
+
+    body {
+        background-image: url("https://img.freepik.com/free-photo/old-camera-notebook-laptop-with-blue-pencil-cup-cappuccino-white-background_23-2147979092.jpg?w=2000");
+        background-position: center center;
+        background-size: cover;
+        height: 100vh;
+        width: 100%;
+        background-repeat: no-repeat;
+    }
+
+    .button-container {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin-top: 20px;
+    }
+
+    h3 {
+        color: red;
+        font-size: 20px; /* Increased the font size */
+    }
+
+    .message-container {
+        text-align: center;
+        margin-top: 10px;
+    }
+
+    .message-container .error-message {
+        color: red;
+        font-size: 25px; /* Increased the font size */
+    }
+
+    h3 {
+        text-align: center;
+    }
+
+    .login-box h3 {
+        font-size: 30px; /* Increased the font size */
+    }
+
+    .btn.btn-primary {
+        background-color: #79BAEC;
+        color: white;
+    }
+   
+</style>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+</h:head>
+<h:body onload="onPageload()">
+    <div class="login-box">
+        <div class="card-header text-center">
+            <h3> Login</h3>
+        </div>
+       <div class="card-body">
+            <h:form id="cfrm">
+      <label for="Username" style="font-style: Monospace;">User name :</label>
+
+                <div class="form-group">
+                    <div class="input-group">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text"><i class="fas fa-user"></i></span>
+                        </div>
+                        <h:inputText id="username" value="#{Regstration.username}" class="form-control" required="true"
+                            requiredMessage="Please Enter User Name." onkeyup="validateFirstLetter(this)" />
+                            
+                    </div>
+                   <h:message for="username" style="color: red;" />
+                </div>
+<label for="password" style="font-style: Monospace;">Password:</label>
+                <div class="form-group">
+                    <div class="input-group">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text"><i class="fas fa-key"></i></span>
+                        </div>
+                        <h:inputSecret id="password" value="#{Regstration.password}" class="form-control" required="true"
+                            requiredMessage="Please Enter Password." onkeyup="validatePassword(this)"  />
+                    </div>
+                   <h:message for="password" style="color: red;" />
+                </div>
+                
+  <div class="input-group">
+    <div class="input-group-prepend">
+        <span class="input-group-text" style="font-style: Monospace;">Category :</span>
+    </div>
+    <div class="form-check ml-2">
+        <h:selectOneRadio id="role" value="#{Regstration.category}" required="true" requiredMessage="Please select a Category.">
+            <f:selectItem itemValue="staff" itemLabel="Staff" />
+            <f:selectItem itemValue="admin" itemLabel="Admin" />
+        </h:selectOneRadio>
+        <h:message for="role" style="color: red;" />
+    </div>
+</div>
+
+<div style="margin-bottom: 10px;"></div>
+
+                <div class="button-container">
+                     <h:commandButton id="login" styleClass="btn btn-primary"  style="margin-right: 10px;  font-family: monospace;"
+        action="#{Hospitaldao.checkUsers(Regstration)}"     value="Login"   />
+        
+          <script>
+									function clearFields() {
+										
+										document.getElementById("cfrm:password").value = "";
+										document.getElementById("cfrm:role").value = "";
+										document.getElementById("cfrm:role:0").checked = false;
+										document.getElementById("cfrm:role:1").checked = false;
+									}
+									document.addEventListener("DOMContentLoaded", function() {
+										clearFields();
+									});
+								</script>
+
+
+              <h:commandButton value="Reset"
+              styleClass="btn btn-primary"  style="margin-right: 10px;  font-family: monospace;"
+                actionListener="#{yourBean.resetForm}"
+                onclick="cancelBooking(event)" />
+
+                </div>
+               <div class="message-container">
+    <h:message for="login" styleClass="text-danger error-message" />
+</div>
+
+            </h:form>
+        </div>
+        <div class="links">
+            <a href="ForgetPassword.jsp">Reset password</a>
+             <a href="Reset.jsp">Forgot password</a>
+        </div>
+        <div class="card-footer">
+            <div class="links">
+                New User? <a href="Adduser.xhtml">Sign Up</a>
+            </div>
+        </div>
+    </div>
+    <script>
+        function onPageload() {
+            document.getElementById("cfrm:username").setAttribute('placeholder', "User Name");
+            document.getElementById("cfrm:password").setAttribute('placeholder', "Password");
+        }
+    </script>
+    <script>
+  function validateFirstLetter(input) {
+    var value = input.value.trim();
+    var isValid = value.length >= 3;
+    
+    if (!isValid) {
+      input.setCustomValidity("Username Atlest 3 Characters");
+    } else {
+      input.setCustomValidity("");
+    }
+  }
+ 
+  function validatePassword(input) {
+      var value = input.value.trim();
+      var isValid = value.length >= 3;
+      var containsLetters = /[a-zA-Z]/.test(value);
+      
+      if (!isValid || !containsLetters) {
+          input.setCustomValidity("Please enter The Correct Password.");
+      } else {
+          input.setCustomValidity("");
+      }
+  }
+</script>
+ <script>
+        function cancelBooking(event) {
+            event.preventDefault(); // Prevent the default form submission behavior
+            // Redirect to the cancellation page
+            window.location.href = "Login.xhtml";
+        }
+    </script>
+ 
+   
+  
+
+</h:body>
+</html>

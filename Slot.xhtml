@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+     
+      >
+<head>
+    <title>Book Slot</title>
+    <script>
+        function calculateAmount() {
+            var startDate = new Date(document.getElementById("form:startDate").value);
+            var endDate = new Date(document.getElementById("form:endDate").value);
+            var category = document.getElementById("form:category").value;
+            var days = Math.floor((endDate - startDate) / (1000 * 60 * 60 * 24)) + 1;
+            var amount = 0;
+
+            if (category === "two wheeler") {
+                amount = days * 10;
+            } else if (category === "four wheeler") {
+                amount = days * 20;
+            }
+
+            document.getElementById("form:amount").textContent = amount;
+        }
+    </script>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+        }
+
+        h1 {
+            text-align: center;
+        }
+
+        form {
+            max-width: 400px;
+            margin: 0 auto;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 5px;
+        }
+
+        input[type="text"],
+        input[type="date"],
+        select {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 10px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            box-sizing: border-box;
+        }
+
+        span#amount {
+            font-weight: bold;
+        }
+
+        input[type="submit"] {
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            padding: 10px 20px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <h1>Book Slot</h1>
+    <h:form id="form">
+        <h:messages />
+
+        <h:panelGrid columns="2">
+            <h:outputLabel for="vehicleNumber">Vehicle Number:</h:outputLabel>
+            <h:inputText id="vehicleNumber" value="#{staff.vehicleNumber}" required="true" />
+
+            <h:outputLabel for="startDate">Start Date:</h:outputLabel>
+            <h:inputText id="startDate" value="#{staff.startDate}" required="true" onchange="calculateAmount()" />
+
+            <h:outputLabel for="endDate">End Date:</h:outputLabel>
+            <h:inputText id="endDate" value="#{staff.endDate}" required="true" onchange="calculateAmount()" />
+
+            <h:outputLabel for="category">Category:</h:outputLabel>
+            <h:selectOneMenu id="category" value="#{staff.category}" required="true" onchange="calculateAmount()">
+                <f:selectItem itemLabel="Please Select Category" itemValue="Category" />
+                <f:selectItem itemLabel="Two Wheeler" itemValue="two wheeler" />
+                <f:selectItem itemLabel="Four Wheeler" itemValue="four wheeler" />
+            </h:selectOneMenu>
+
+            <h:outputLabel for="amount">Amount:</h:outputLabel>
+            <h:outputText id="amount" value="#{staff.amount}" />
+
+            <h:outputLabel for="slotNumber">Slot Number:</h:outputLabel>
+            <h:inputText id="slotNumber" value="#{staff.slotNumber}" required="true" />
+        </h:panelGrid>
+
+       <h:commandButton value="Book" action="#{StaffDAO.bookSlot(staff.vehicleNumber, staff.startDate, staff.endDate, staff.category, staff.slotNumber)}" />
+
+    </h:form>
+</body>
+</html>

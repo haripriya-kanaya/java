@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:h="http://xmlns.jcp.org/jsf/html">
+
+<h:head>
+    <title>Hospital Parking System</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+          /* Replace the URL with the path to your desired background image */
+            background-image: url("https://www.libelium.com/wp-content/uploads/2020/07/SOLUTIONS-slide-mobile-5.jpg");
+                background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            height: 100vh;
+        }
+        
+        /* Add the background color to the header-container */
+        .header-container {
+            background-color: #3498db;
+            padding: 30px 0; /* Add some padding to separate the heading from the fixed background */
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            overflow: hidden;
+        }
+
+        h1 {
+            text-align: center;
+            font-size: 36px;
+            white-space: nowrap;
+            margin: 0;
+            padding: 0;
+            animation: scrollText 10s linear infinite;
+            color: white; /* Set the color of the animated text */
+        }
+
+        @keyframes scrollText {
+            0% {
+                transform: translateX(100%);
+            }
+            100% {
+                transform: translateX(-100%); /* Change the value to control the speed and direction of scrolling */
+            }
+        }
+
+        /* Remove the background color from the h1::before pseudo-element */
+        h1::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            height: 100%;
+            width: 100%;
+            z-index: -1;
+        }
+
+        h1 span {
+            display: inline-block;
+        }
+
+        nav {
+            background-color: #333;
+            color: #fff;
+            padding: 10px;
+            text-align: center;
+           
+             margin-top: 140px;
+        }
+        nav a {
+            color: #fff;
+            text-decoration: none;
+            margin: 0 10px;
+        }
+        nav a:hover {
+            text-decoration: underline;
+        }
+        section {
+            padding: 30px;
+            text-align: center;
+            background-color: rgba(255, 255, 255, 0.8);
+            margin: 50px;
+        }
+        footer {
+            background-color: #333;
+            color: #fff;
+            padding: 10px;
+            text-align: center;
+            position: absolute;
+            bottom: 0; /* Position the footer at the bottom of the page */
+            left: 0;
+            right: 0;
+            margin-bottom: 20px; /* Add some margin to move the footer downwards */
+        }
+    </style>
+</h:head>
+<h:body>
+    <div class="header-container">
+        <h1>Welcome to Hospital Parking System</h1>
+    </div>
+    <nav>
+        
+        <a href="About.xhtml">About</a>
+       
+        <a href="Login.xhtml">Register</a>
+    </nav>
+   
+    <footer>
+        2023 Hospital Parking System.
+    </footer>
+</h:body>
+</html>

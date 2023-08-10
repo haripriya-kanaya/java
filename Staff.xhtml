@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui">
+
+<h:head>
+    <title>Staff Information</title>
+</h:head>
+<h:body>
+    <h:form>
+        <p:panel header="Staff Search">
+            <h:outputLabel value="Category: "/>
+            <p:inputText value="#{Staff.category}" required="true"/>
+            <p:commandButton value="Search" action="#{Admindao.getStaffByCategory()}" update="staffTable"/>
+        </p:panel>
+
+        <h2>Staff Information</h2>
+        <p:dataTable id="staffTable" value="#{Staff.staffList}" var="staff">
+            <p:column headerText="Staff ID">
+                #{staff.staffid}
+            </p:column>
+            <p:column headerText="Username">
+                #{Staff.username}
+            </p:column>
+            <p:column headerText="Vehicle Number">
+                #{Staff.vechilenumber}
+            </p:column>
+            <p:column headerText="Start Date">
+                #{Staff.startdate}
+            </p:column>
+            <p:column headerText="End Date">
+                #{Staff.enddate}
+            </p:column>
+            <p:column headerText="Category">
+                #{Staff.category}
+            </p:column>
+            <p:column headerText="Slot Number">
+                #{Staff.slotnumber}
+            </p:column>
+            <p:column headerText="Charges Per Day">
+                #{Staff.chargesperday}
+            </p:column>
+            <p:column headerText="Booking ID">
+                #{Staff.bookid}
+            </p:column>
+        </p:dataTable>
+    </h:form>
+</h:body>
+</html>
